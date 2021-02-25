@@ -25,11 +25,14 @@ import android.support.v7.widget.Toolbar;
 
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class AppActivity extends AppCompatActivity {
     TextView rssiTextView;
+    Button sendButton;
     final Handler handler = new Handler();
     final int delay = 500;
 
@@ -40,6 +43,12 @@ public class AppActivity extends AppCompatActivity {
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
         rssiTextView = (TextView)findViewById(R.id.rssiTextView);
+        sendButton = (Button)findViewById(R.id.send_button);
+        sendButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                onLocationReached();
+            }
+        });
         final LinearLayout li = (LinearLayout) findViewById(R.id.myScreen);
         handler.postDelayed(new Runnable() {
             public void run() {
@@ -100,6 +109,7 @@ public class AppActivity extends AppCompatActivity {
     public void onLocationReached() {
         startActivity(new Intent(this, VideoActivity.class));
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
