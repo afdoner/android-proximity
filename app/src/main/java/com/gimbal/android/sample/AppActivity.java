@@ -42,7 +42,7 @@ public class AppActivity extends AppCompatActivity {
             public void run() {
                 rssiTextView.setText(GimbalIntegration.instance().getRssiValue());
                 handler.postDelayed(this, delay);
-                if (GimbalIntegration.instance().getRssiValue().equals("You've arrived!")) {
+                if (GimbalIntegration.instance().getRssiValue().equals("Try a tide pod today!")) {
                     GimbalIntegration.instance().onTerminate();
                     onLocationReached();
                     handler.removeCallbacksAndMessages(null);

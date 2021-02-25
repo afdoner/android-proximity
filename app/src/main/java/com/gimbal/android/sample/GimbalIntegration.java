@@ -34,7 +34,7 @@ import com.gimbal.android.Visit;
 
 public class GimbalIntegration extends AppCompatActivity {
     private static final String GIMBAL_APP_API_KEY = "d56b723f-1863-4230-80a3-3f818fde547f";
-    private int rssiValue = -100;
+    private int rssiValue = -150;
     double[] intArray = new double[3];
 
     private Application app;
@@ -99,16 +99,31 @@ public class GimbalIntegration extends AppCompatActivity {
         String msg = "";
         if (rssiValue <= -90) {
             msg = "Cold";
-        }
-        else if (rssiValue > -60){
-            msg = "You've arrived!";
             if (mTcpClient != null) {
                 Log.v("Event", "Sending message to tcp server!");
-                mTcpClient.sendMessage("1");
+                mTcpClient.sendMessage("0");
+            }
+        }
+        else if (rssiValue > -60) {
+            msg = "Try a tide pod today!";
+            if (mTcpClient != null) {
+                Log.v("Event", "Sending message to tcp server!");
+                mTcpClient.sendMessage("3");
+            }
+        }
+        else if (rssiValue > -75) {
+            msg = "Hot";
+            if (mTcpClient != null) {
+                Log.v("Event", "Sending message to tcp server!");
+                mTcpClient.sendMessage("2");
             }
         }
         else if (rssiValue > -90) {
             msg = "Warm";
+            if (mTcpClient != null) {
+                Log.v("Event", "Sending message to tcp server!");
+                mTcpClient.sendMessage("1");
+            }
         }
         return msg;
     }

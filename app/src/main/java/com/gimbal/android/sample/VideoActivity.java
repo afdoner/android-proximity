@@ -15,6 +15,7 @@
  */
 package com.gimbal.android.sample;
 
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Build;
@@ -152,11 +153,14 @@ public class VideoActivity extends AppCompatActivity {
 
                         // Return the video position to the start.
                         mVideoView.seekTo(0);
+                        onVideoEnd();
                     }
                 });
     }
 
-
+    public void onVideoEnd() {
+        startActivity(new Intent(this, AppActivity.class));
+    }
     // Release all media-related resources. In a more complicated app this
     // might involve unregistering listeners or releasing audio focus.
     private void releasePlayer() {
