@@ -172,7 +172,7 @@ public class VideoActivity extends AppCompatActivity {
         } else {
             // Media name is a raw resource embedded in the app.
             return Uri.parse("android.resource://" + getPackageName() +
-                    "/" + R.raw.tacoma_narrows);
+                    "/" + R.raw.reward_video);
         }
     }
 }
