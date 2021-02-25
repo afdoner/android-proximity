@@ -35,7 +35,6 @@ import com.gimbal.android.Visit;
 public class GimbalIntegration extends AppCompatActivity {
     private static final String GIMBAL_APP_API_KEY = "d56b723f-1863-4230-80a3-3f818fde547f";
     private int rssiValue = -150;
-    double[] intArray = new double[3];
 
     private Application app;
     private Context     appContext;
@@ -75,21 +74,19 @@ public class GimbalIntegration extends AppCompatActivity {
                     Log.i("INNOVATION-LAB1", sighting.getRSSI().toString());
                     rssiValue = sighting.getRSSI();
                 }
-//                if (sighting.getBeacon().getName().equals("INNOVATION-LAB2")) {
-//                    intArray[1] = sighting.getRSSI();
-//                    Log.i("INNOVATION-LAB2", sighting.getRSSI().toString());
-//                }
-//                if (sighting.getBeacon().getName().equals("INNOVATION-LAB3")) {
-//                    intArray[2] = sighting.getRSSI();
-//                    Log.i("INNOVATION-LAB3", sighting.getRSSI().toString());
-//                }
-//                Arrays.sort(intArray);
-//                double median;
-//                if (intArray.length % 2 == 0)
-//                    median = (double)intArray[intArray.length/2] + (double)intArray[intArray.length/2 - 1]/2;
-//                else
-//                    median = ((double) intArray[intArray.length/2]);
-//                rssiValue = toString().valueOf(median);
+                if (sighting.getBeacon().getName().equals("INNOVATION-LAB2")) {
+                    Log.i("INNOVATION-LAB2", sighting.getRSSI().toString());
+                    if (rssiValue > sighting.getRSSI()) {
+                        rssiValue = sighting.getRSSI();
+                    }
+                }
+                if (sighting.getBeacon().getName().equals("INNOVATION-LAB3")) {
+                    Log.i("INNOVATION-LAB3", sighting.getRSSI().toString());
+                    if (rssiValue > sighting.getRSSI()) {
+                        rssiValue = sighting.getRSSI();
+                    }
+                }
+
             }
         };
         PlaceManager.getInstance().addListener(placeEventListener);
@@ -104,14 +101,14 @@ public class GimbalIntegration extends AppCompatActivity {
                 mTcpClient.sendMessage("0");
             }
         }
-        else if (rssiValue > -60) {
+        else if (rssiValue > -65) {
             msg = "Try a tide pod today!";
             if (mTcpClient != null) {
                 Log.v("Event", "Sending message to tcp server!");
                 mTcpClient.sendMessage("3");
             }
         }
-        else if (rssiValue > -75) {
+        else if (rssiValue > -80) {
             msg = "Hot";
             if (mTcpClient != null) {
                 Log.v("Event", "Sending message to tcp server!");
