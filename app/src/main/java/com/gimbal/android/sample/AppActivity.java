@@ -18,7 +18,6 @@ package com.gimbal.android.sample;
 
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -53,11 +52,11 @@ public class AppActivity extends AppCompatActivity {
                     handler.removeCallbacksAndMessages(null);
                 }
                 else if (val.equals("Cold"))
-                    li.setBackgroundColor(Color.parseColor("#0068AC"));
+                    li.setBackgroundResource(R.drawable.cold);
                 else if (val.equals("Warm"))
-                    li.setBackgroundResource(R.drawable.main_header_selector);
+                    li.setBackgroundResource(R.drawable.warm);
                 else if (val.equals("Hot"))
-                    li.setBackgroundColor(Color.parseColor("#F47E40"));
+                    li.setBackgroundResource(R.drawable.hot);
             }
         }, delay);
     }
