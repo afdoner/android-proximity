@@ -25,7 +25,6 @@
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
-        android:background="@color/optin_background"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -46,7 +45,12 @@
             android:background="@android:drawable/btn_dialog"/>
 
     </FrameLayout>
-
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="#0068AC"
+        android:id="@+id/myScreen"/>
     <TextView
         android:id="@+id/rssiTextView"
         android:layout_width="wrap_content"
@@ -54,8 +58,8 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="250dp"
-        android:text="Close"
+        android:text="Cold"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="50dp"/>
+        android:textSize="75dp"/>
 
 </RelativeLayout>

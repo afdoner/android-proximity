@@ -17,6 +17,8 @@
 package com.gimbal.android.sample;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -24,6 +26,7 @@ import android.support.v7.widget.Toolbar;
 
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class AppActivity extends AppCompatActivity {
@@ -38,15 +41,23 @@ public class AppActivity extends AppCompatActivity {
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
         rssiTextView = (TextView)findViewById(R.id.rssiTextView);
+        final LinearLayout li = (LinearLayout) findViewById(R.id.myScreen);
         handler.postDelayed(new Runnable() {
             public void run() {
-                rssiTextView.setText(GimbalIntegration.instance().getRssiValue());
+                String val = GimbalIntegration.instance().getRssiValue();
+                rssiTextView.setText(val);
                 handler.postDelayed(this, delay);
-                if (GimbalIntegration.instance().getRssiValue().equals("Try a tide pod today!")) {
+                if (val.equals("Try a tide pod today!")) {
                     GimbalIntegration.instance().onTerminate();
                     onLocationReached();
                     handler.removeCallbacksAndMessages(null);
                 }
+                else if (val.equals("Cold"))
+                    li.setBackgroundColor(Color.parseColor("#0068AC"));
+                else if (val.equals("Warm"))
+                    li.setBackgroundResource(R.drawable.main_header_selector);
+                else if (val.equals("Hot"))
+                    li.setBackgroundColor(Color.parseColor("#F47E40"));
             }
         }, delay);
     }
